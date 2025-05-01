@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+files:
+  - source: /backend/
+    destination: /home/ec2-user/ecommerce-app/backend
+hooks:
+  AfterInstall:
+    - location: scripts/install.sh
+      timeout: 300
+    - location: scripts/start.sh
+      timeout: 300
+  ApplicationStop:
+    - location: scripts/stop.sh
+      timeout: 300
