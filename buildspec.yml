@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - cd backend
+      - npm install
+
+  build:
+    commands:
+      - echo "Build complete"
+
+artifacts:
+  files:
+    - '**/*'
