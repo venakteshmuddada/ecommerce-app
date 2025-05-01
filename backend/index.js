@@ -3,13 +3,16 @@ const app = express();
 const port = 3000;
 const mysql = require('mysql');
 const AWS = require('aws-sdk');
+
+// Set region for Secrets Manager
+AWS.config.update({ region: process.env.AWS_REGION || 'us-east-1' });
 const secretsManager = new AWS.SecretsManager();
 
 // Fetch DB credentials from Secrets Manager
 async function getDBCredentials() {
   try {
     const secretValue = await secretsManager.getSecretValue({
-      SecretId: 'ecommerce-db-credentials'  // The secret name from Secrets Manager
+      SecretId: 'ecommerce-db-credentials'
     }).promise();
 
     const secret = JSON.parse(secretValue.SecretString);
@@ -25,24 +28,23 @@ async function getDBCredentials() {
 
 // Setup MySQL connection
 async function connectDB() {
-  const credentials = await getDBCredentials();  // Get DB credentials from Secrets Manager
+  const credentials = await getDBCredentials();
   const connection = mysql.createConnection({
-    host: 'your-db-host',  // The DB host (endpoint from RDS or similar)
-    user: credentials.username,  // The username from Secrets Manager
-    password: credentials.password,  // The password from Secrets Manager
-    database: 'your-database'  // Your DB name
+    host: 'terraform-20250430190138256300000001.c2bcyuiw61ub.us-east-1.rds.amazonaws.com',
+    user: credentials.username,
+    password: credentials.password,
+    database: 'your-database-name-here'
   });
 
   connection.connect((err) => {
     if (err) {
-      console.error('Error connecting to DB:', err);
+      console.error('❌ Error connecting to DB:', err);
     } else {
-      console.log('Connected to DB!');
+      console.log('✅ Connected to RDS DB!');
     }
   });
 }
 
-// Call DB connection when the app starts
 connectDB();
 
 app.get('/', (req, res) => {
@@ -52,22 +54,3 @@ app.get('/', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server running on http://0.0.0.0:${port}`);
 });
-
-// trigger deploy
-// trigger new deploy
-// deploy trigger
-// deploy new trigger
-// deploy new trigger
-// deploy new trigger
-// deploy new trigger
-// deploy trigger
-// deploy trigger
-// deploy trigger
-// deploy trigger
-// deploy trigger
-// deploy trigger
-// deploy trigger
-// deploy trigger
-// deploy trigger
-// deploy trigger
-// deploy trigger
