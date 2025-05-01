@@ -54,3 +54,28 @@ app.get('/', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server running on http://0.0.0.0:${port}`);
 });
+<<<<<<< HEAD
+=======
+
+// trigger deploy
+// trigger new deploy
+// deploy trigger
+// deploy new trigger
+// deploy new trigger
+// deploy new trigger
+// deploy new trigger
+// deploy trigger
+// deploy trigger
+// deploy trigger
+// deploy trigger
+// deploy trigger
+// deploy trigger
+// deploy trigger
+// deploy trigger
+// deploy trigger
+// deploy trigger
+// deploy trigger
+// deploy trigger
+>>>>>>> d1e402c (Trigger deploy)
+// deploy trigger
+// deploy trigger
