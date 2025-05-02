@@ -2,13 +2,18 @@ version: 0.0
 os: linux
 files:
   - source: /
-   destination: /home/ec2-user/deploy_temp
+    destination: /home/ec2-user/app
+
 hooks:
+  BeforeInstall:
+    - location: scripts/stop.sh
+      timeout: 300
+      runas: ec2-user
   AfterInstall:
-    - location: scripts/install_dependencies.sh
+    - location: scripts/install.sh
       timeout: 300
       runas: ec2-user
   ApplicationStart:
-    - location: scripts/start_server.sh
+    - location: scripts/start.sh
       timeout: 300
       runas: ec2-user
