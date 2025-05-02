@@ -4,3 +4,4 @@
 *.tar.gz
 *.xz
 .terraform/
+node_modules/
