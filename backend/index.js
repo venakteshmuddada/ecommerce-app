@@ -51,6 +51,13 @@ app.get('/', (req, res) => {
   res.send('✅ Ecommerce Backend is running!');
 });
 
+app.get('/products', (req, res) => {
+  res.json([
+    { id: 1, name: "Product A" },
+    { id: 2, name: "Product B" }
+  ]);
+});
+
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server running on http://0.0.0.0:${port}`);
 });
